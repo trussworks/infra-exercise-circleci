@@ -50,7 +50,7 @@ To get you started on understanding CircleCI configuration, there's some basic v
 
 If you want more info or a general reference, see the full [CircleCI config docs](https://circleci.com/docs/2.0/config-intro/#section=configuration).
 
-Using the [template](.circleci/template.yml) start to fill in steps for the jobs corresponding to `build`, `test`, and `deploy`.
+Using the [template](.circleci/config.yml) start to fill in steps for the jobs corresponding to `build`, `test`, and `deploy`.
 
 TODO: Add a walkthrough of the template.yml file?
 
