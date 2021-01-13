@@ -1,0 +1,57 @@
+version: 2.1
+
+# reusable pieces
+references:
+  circleci_container: &circleci_container trussworks/circleci:efb1042e31538677779971798e0912390f699e72
+
+# Define the different jobs associated with the project
+jobs:
+  build:
+    docker:
+      - image: *circleci_container
+        auth:
+          password: $DOCKER_PASSWORD
+          username: $DOCKER_USERNAME
+    steps:
+      - checkout
+      - run:
+          name: Run the build 
+          command: echo "build"
+  test:
+    docker:
+      - image: *circleci_container
+        auth:
+          password: $DOCKER_PASSWORD
+          username: $DOCKER_USERNAME
+    steps:
+      - checkout
+      - run:
+          name: Run the test
+          command: |
+            echo "this is a multi line example"
+            echo "you can basically dump a whole script here"
+  deploy:
+    docker:
+      - image: *circleci_container
+        auth:
+          password: $DOCKER_PASSWORD
+          username: $DOCKER_USERNAME
+    steps:
+      - checkout
+      - run:
+          name: Run the release 
+          command: ./release
+
+# Sequencing of the jobs
+workflows:
+  ci:
+    jobs:
+    - build:
+        context:
+        - org-global
+    - test:
+        context:
+        - org-global
+    - deploy:
+        context:
+        - org-global
